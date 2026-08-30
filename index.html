@@ -86,97 +86,6 @@
 </head>
 <body class="h-full flex flex-col bg-slate-950 text-slate-100 overflow-x-hidden antialiased select-none">
 
-    <!-- TELA DE AUTENTICAÇÃO / LOGIN / CADASTRO E BOAS-VINDAS (PRIMEIRA ORDEM) -->
-    <div id="auth-screen" class="fixed inset-0 z-[100] bg-slate-950/95 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
-        
-        <!-- CARD DE AUTENTICAÇÃO (LOGIN / CADASTRO) -->
-        <div id="auth-card" class="bg-slate-900 border border-slate-800 rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative my-auto">
-            
-            <div class="text-center mb-6">
-                <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-400 mx-auto flex items-center justify-center text-slate-950 text-2xl font-black shadow-lg shadow-emerald-500/20 mb-3">
-                    <i class="fa-solid fa-map-location-dot"></i>
-                </div>
-                <h2 class="text-xl sm:text-2xl font-extrabold text-white">ComuniMap</h2>
-                <p class="text-xs text-slate-400 mt-1">Mapeamento Urbano Colaborativo de Três Lagoas - MS</p>
-            </div>
-
-            <!-- ABAS DE NAVEGAÇÃO ENTRE ENTRAR E CADASTRAR -->
-            <div id="auth-nav-tabs" class="flex bg-slate-950 p-1 rounded-2xl border border-slate-800 mb-6">
-                <button id="btn-tab-login" onclick="alternarAbaAuth('login')" class="flex-1 py-2 text-xs font-bold rounded-xl bg-emerald-500 text-slate-950 transition-all shadow-md">
-                    <i class="fa-solid fa-right-to-bracket mr-1"></i> Entrar
-                </button>
-                <button id="btn-tab-cadastro" onclick="alternarAbaAuth('cadastro')" class="flex-1 py-2 text-xs font-bold rounded-xl text-slate-400 hover:text-white transition-all">
-                    <i class="fa-solid fa-user-plus mr-1"></i> Cadastrar-se
-                </button>
-            </div>
-
-            <!-- FORMULÁRIO DE LOGIN -->
-            <form id="form-login" onsubmit="fazerLogin(event)" class="space-y-4">
-                <div>
-                    <label class="block text-xs font-medium text-slate-400 mb-1">E-mail *</label>
-                    <input type="email" id="login-email" required placeholder="seuemail@exemplo.com" class="w-full bg-slate-800/80 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-emerald-500">
-                </div>
-                <div>
-                    <label class="block text-xs font-medium text-slate-400 mb-1">Senha *</label>
-                    <input type="password" id="login-senha" required placeholder="••••••••" class="w-full bg-slate-800/80 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-emerald-500">
-                </div>
-                <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3 rounded-xl text-xs sm:text-sm transition-all shadow-lg shadow-emerald-500/20 active:scale-95">
-                    Acessar Conta
-                </button>
-                <div class="text-center pt-2">
-                    <p class="text-[11px] text-slate-500">Ainda não possui conta? <button type="button" onclick="alternarAbaAuth('cadastro')" class="text-emerald-400 hover:underline font-semibold">Cadastre-se grátis</button></p>
-                </div>
-            </form>
-
-            <!-- FORMULÁRIO DE CADASTRO -->
-            <form id="form-cadastro" onsubmit="cadastrarUsuario(event)" class="hidden space-y-3">
-                <div>
-                    <label class="block text-xs font-medium text-slate-400 mb-1">Nome Completo *</label>
-                    <input type="text" id="cad-nome" required placeholder="Seu Nome" class="w-full bg-slate-800/80 border border-slate-700 rounded-xl px-3.5 py-2 text-xs sm:text-sm text-white focus:outline-none focus:border-emerald-500">
-                </div>
-                <div>
-                    <label class="block text-xs font-medium text-slate-400 mb-1">E-mail *</label>
-                    <input type="email" id="cad-email" required placeholder="seuemail@exemplo.com" class="w-full bg-slate-800/80 border border-slate-700 rounded-xl px-3.5 py-2 text-xs sm:text-sm text-white focus:outline-none focus:border-emerald-500">
-                </div>
-                <div>
-                    <label class="block text-xs font-medium text-slate-400 mb-1">Senha *</label>
-                    <input type="password" id="cad-senha" required minlength="6" placeholder="Mínimo 6 caracteres" class="w-full bg-slate-800/80 border border-slate-700 rounded-xl px-3.5 py-2 text-xs sm:text-sm text-white focus:outline-none focus:border-emerald-500">
-                </div>
-                <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3 rounded-xl text-xs sm:text-sm transition-all shadow-lg shadow-emerald-500/20 active:scale-95 mt-2">
-                    Criar Minha Conta
-                </button>
-                <div class="text-center pt-2">
-                    <p class="text-[11px] text-slate-500">Já tem uma conta? <button type="button" onclick="alternarAbaAuth('login')" class="text-emerald-400 hover:underline font-semibold">Fazer login</button></p>
-                </div>
-            </form>
-
-        </div>
-
-        <!-- TELA DE BOAS-VINDAS APÓS O LOGIN (COM A OPÇÃO "VER COMUNIMAP") -->
-        <div id="welcome-card" class="hidden bg-slate-900 border border-slate-800 rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl text-center space-y-5 my-auto">
-            <div class="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/30 mx-auto flex items-center justify-center text-emerald-400 text-3xl">
-                <i class="fa-solid fa-circle-check"></i>
-            </div>
-            <div>
-                <h2 class="text-xl sm:text-2xl font-black text-white">Login Realizado!</h2>
-                <p id="welcome-user-name" class="text-sm font-semibold text-emerald-400 mt-1">Bem-vindo(a)</p>
-                <p class="text-xs text-slate-400 mt-2 leading-relaxed">Você está conectado. Clique no botão abaixo para explorar os pontos, alertas de perigo e doações comunitárias de Três Lagoas.</p>
-            </div>
-
-            <!-- OPÇÃO PRINCIPAL DE ACESSO SOLICITADA -->
-            <div class="pt-2 space-y-3">
-                <button onclick="irParaComuniMap()" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black py-3.5 px-6 rounded-2xl text-sm transition-all shadow-xl shadow-emerald-500/25 flex items-center justify-center gap-2 active:scale-95">
-                    <i class="fa-solid fa-map-marked-alt text-lg"></i>
-                    <span>Ver ComuniMap</span>
-                </button>
-                <button onclick="fazerLogout()" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold py-2.5 rounded-xl text-xs border border-slate-700 transition">
-                    <i class="fa-solid fa-arrow-right-from-bracket mr-1"></i> Sair / Trocar Conta
-                </button>
-            </div>
-        </div>
-
-    </div>
-
     <!-- BANNER DE AVISO DURANTE A SELEÇÃO NO MAPA -->
     <div id="map-picker-banner" class="hidden fixed top-20 left-1/2 -translate-x-1/2 z-50 bg-slate-900/95 backdrop-blur-md text-white px-4 py-3 rounded-2xl shadow-2xl border border-emerald-500/80 flex items-center gap-3 max-w-[90vw]">
         <div class="w-2.5 h-2.5 rounded-full bg-emerald-400"></div>
@@ -208,15 +117,6 @@
 
             <!-- BOTÕES DE AÇÃO RÁPIDA -->
             <div class="flex items-center gap-2">
-                <!-- BADGE DO USUÁRIO LOGADO -->
-                <div id="user-header-badge" class="hidden items-center gap-2 bg-slate-800/80 border border-slate-700/80 px-3 py-1.5 rounded-xl text-xs text-slate-300">
-                    <i class="fa-solid fa-circle-user text-emerald-400 text-sm"></i>
-                    <span id="user-header-name" class="font-semibold truncate max-w-[100px] hidden md:inline">Usuário</span>
-                    <button onclick="fazerLogout()" title="Sair da Conta" class="text-slate-400 hover:text-rose-400 transition ml-1">
-                        <i class="fa-solid fa-power-off text-xs"></i>
-                    </button>
-                </div>
-
                 <button onclick="openModal('modal-risco')" class="bg-rose-600/90 hover:bg-rose-500 text-white text-xs sm:text-sm px-3.5 py-2 rounded-xl font-semibold transition-all shadow-lg shadow-rose-600/20 flex items-center gap-2 active:scale-95">
                     <i class="fa-solid fa-triangle-exclamation"></i>
                     <span class="hidden sm:inline">Reportar Perigo</span>
@@ -518,136 +418,8 @@
         let activeFilter = 'todos';
         let searchQuery = '';
 
-        // CHAVES DO LOCALSTORAGE
+        // CHAVE DO LOCALSTORAGE
         const STORAGE_KEY = 'COMUNIMAP_3LAGOAS_DATA';
-        const USERS_KEY = 'COMUNIMAP_USERS';
-        const CURRENT_USER_KEY = 'COMUNIMAP_CURRENT_USER';
-
-        let usuarioLogado = null;
-
-        function carregarUsuarioLogado() {
-            try {
-                const userJson = localStorage.getItem(CURRENT_USER_KEY);
-                if (userJson) {
-                    usuarioLogado = JSON.parse(userJson);
-                    exibirTelaBoasVindas();
-                } else {
-                    document.getElementById('auth-screen').classList.remove('hidden');
-                    document.getElementById('auth-card').classList.remove('hidden');
-                    document.getElementById('welcome-card').classList.add('hidden');
-                }
-            } catch (e) {
-                console.error("Erro ao carregar sessão:", e);
-            }
-        }
-
-        function alternarAbaAuth(aba) {
-            const btnLogin = document.getElementById('btn-tab-login');
-            const btnCad = document.getElementById('btn-tab-cadastro');
-            const formLogin = document.getElementById('form-login');
-            const formCad = document.getElementById('form-cadastro');
-
-            if (aba === 'login') {
-                btnLogin.className = "flex-1 py-2 text-xs font-bold rounded-xl bg-emerald-500 text-slate-950 transition-all shadow-md";
-                btnCad.className = "flex-1 py-2 text-xs font-bold rounded-xl text-slate-400 hover:text-white transition-all";
-                formLogin.classList.remove('hidden');
-                formCad.classList.add('hidden');
-            } else {
-                btnCad.className = "flex-1 py-2 text-xs font-bold rounded-xl bg-emerald-500 text-slate-950 transition-all shadow-md";
-                btnLogin.className = "flex-1 py-2 text-xs font-bold rounded-xl text-slate-400 hover:text-white transition-all";
-                formCad.classList.remove('hidden');
-                formLogin.classList.add('hidden');
-            }
-        }
-
-        function cadastrarUsuario(e) {
-            e.preventDefault();
-            const nome = document.getElementById('cad-nome').value.trim();
-            const email = document.getElementById('cad-email').value.trim().toLowerCase();
-            const senha = document.getElementById('cad-senha').value;
-
-            let usuarios = [];
-            try {
-                usuarios = JSON.parse(localStorage.getItem(USERS_KEY)) || [];
-            } catch(err) { usuarios = []; }
-
-            const existe = usuarios.find(u => u.email === email);
-            if (existe) {
-                showToast("E-mail já cadastrado! Faça login.", "error");
-                alternarAbaAuth('login');
-                document.getElementById('login-email').value = email;
-                return;
-            }
-
-            const novoUsuario = { nome, email, senha };
-            usuarios.push(novoUsuario);
-            localStorage.setItem(USERS_KEY, JSON.stringify(usuarios));
-
-            showToast("Cadastro realizado com sucesso! Faça login para continuar.", "success");
-            document.getElementById('form-cadastro').reset();
-            alternarAbaAuth('login');
-            document.getElementById('login-email').value = email;
-        }
-
-        function fazerLogin(e) {
-            e.preventDefault();
-            const email = document.getElementById('login-email').value.trim().toLowerCase();
-            const senha = document.getElementById('login-senha').value;
-
-            let usuarios = [];
-            try {
-                usuarios = JSON.parse(localStorage.getItem(USERS_KEY)) || [];
-            } catch(err) { usuarios = []; }
-
-            const usuarioValido = usuarios.find(u => u.email === email && u.senha === senha);
-
-            if (!usuarioValido) {
-                showToast("E-mail ou senha incorretos!", "error");
-                return;
-            }
-
-            usuarioLogado = usuarioValido;
-            localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(usuarioLogado));
-            showToast(`Bem-vindo, ${usuarioLogado.nome}!`, "success");
-            exibirTelaBoasVindas();
-        }
-
-        function exibirTelaBoasVindas() {
-            document.getElementById('auth-card').classList.add('hidden');
-            document.getElementById('welcome-card').classList.remove('hidden');
-            document.getElementById('welcome-user-name').innerText = `Olá, ${usuarioLogado.nome}!`;
-            
-            const badge = document.getElementById('user-header-badge');
-            const badgeName = document.getElementById('user-header-name');
-            if (badge && badgeName) {
-                badgeName.innerText = usuarioLogado.nome;
-                badge.classList.remove('hidden');
-                badge.classList.add('flex');
-            }
-        }
-
-        function irParaComuniMap() {
-            document.getElementById('auth-screen').classList.add('hidden');
-            setTimeout(() => {
-                if (map) map.invalidateSize();
-            }, 300);
-            showToast("Bem-vindo ao ComuniMap!", "info");
-        }
-
-        function fazerLogout() {
-            localStorage.removeItem(CURRENT_USER_KEY);
-            usuarioLogado = null;
-            document.getElementById('auth-screen').classList.remove('hidden');
-            document.getElementById('auth-card').classList.remove('hidden');
-            document.getElementById('welcome-card').classList.add('hidden');
-            
-            const badge = document.getElementById('user-header-badge');
-            if (badge) {
-                badge.classList.add('hidden');
-                badge.classList.remove('flex');
-            }
-            showToast("Sessão encerrada.", "info");
-        }
 
         // CENTRO INICIAL DE TRÊS LAGOAS - MS
         const TRES_LAGOAS_CENTER = [-20.7849, -51.6997];
@@ -720,7 +492,6 @@
 
         window.onload = function() {
             carregarDadosSalvos();
-            carregarUsuarioLogado();
             initMap();
             renderFeed();
 
